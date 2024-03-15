@@ -173,3 +173,30 @@ main {
 .open-sidebar #open_btn_icon {
     transform: rotate(180deg);
 }
+
+/* company */
+
+#company {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    background-color: #f6f6f6;
+}
+
+#company_image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+#company_infos {
+    display: flex;
+    flex-direction: column;
+}
+
+#company_infos span:last-child {
+    color: black;
+    font-size: 20px;
+}

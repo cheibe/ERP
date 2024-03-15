@@ -13,6 +13,14 @@
 <body>
     <nav id="sidebar">
         <div id="sidebar_content">
+            <div id="company">
+                <img src="{% static "global/img/company.png" %}" id="company_image" alt="Company">
+                <p id="company_infos">
+                    <span class="item-description">
+                        <b>ERP</b>
+                    </span>
+                </p>
+            </div>
             <div id="user">
                 <img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar">
                 <p id="user_infos">
@@ -35,17 +43,9 @@
                 </li>
                 <li class="side_item">
                     <a href="#">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-clipboard"></i>
                         <span class="item-description">
-                            Usuarios
-                        </span>
-                    </a>
-                </li>
-                <li class="side_item">
-                    <a href="#">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="item-description">
-                            Notificações
+                            Pedidos
                         </span>
                     </a>
                 </li>
@@ -59,17 +59,41 @@
                 </li>
                 <li class="side_item">
                     <a href="#">
-                        <i class="fa-solid fa-image"></i>
+                        <i class="fa-solid fa-user"></i>
                         <span class="item-description">
-                            Imagens
+                            Clientes
                         </span>
                     </a>
                 </li>
                 <li class="side_item">
                     <a href="#">
-                        <i class="fa-solid fa-gear"></i>
+                        <i class="fa-solid fa-truck"></i>
                         <span class="item-description">
-                            Configurações
+                            Fornecedores
+                        </span>
+                    </a>
+                </li>
+                <li class="side_item">
+                    <a href="#">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span class="item-description">
+                            Pagamentos
+                        </span>
+                    </a>
+                </li>
+                <li class="side_item">
+                    <a href="#">
+                        <i class="fa-solid fa-hand-holding-usd"></i>
+                        <span class="item-description">
+                            Recebimentos
+                        </span>
+                    </a>
+                </li>
+                <li class="side_item">
+                    <a href="#">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="item-description">
+                            Usuários
                         </span>
                     </a>
                 </li>
@@ -91,6 +115,6 @@
         {% block content %}{% endblock content %}
     </main>
     <script src="{% static "global/js/main.js" %}"></script>
+    
 </body>
-
 </html>

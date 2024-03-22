@@ -115,7 +115,13 @@
         </div>
     </nav>
     <main>
-        {% block content %}{% endblock content %}
+        <div class="content">
+            <div class="content-fluid">
+                <div class="card"> 
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+        </div>
     </main>
     <script src="{% static "global/js/main.js" %}"></script>
     

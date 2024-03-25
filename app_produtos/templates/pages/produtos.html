@@ -2,7 +2,48 @@
 {% load static %}
 
 {% block content %}
-teste
+    <a href="{% url "produtos:adicionar_produto" %}" class="btn btn-primary mb-3">
+        <span class="fas fa-plus mr-1"></span>
+        Cadastrar
+    </a>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Preço de custo</th>
+                        <th>Preço de venda</th>
+                        <th>Estoque</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in produtos %}
+                        <tr>
+                            <td>{{ produto.codigo }}</td>
+                            <td>{{ produto.nome }}</td>
+                            <td>{{ produto.preco_custo }}</td>
+                            <td>{{ produto.preco_venda }}</td>
+                            <td>{{ produto.estoque }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Opções
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url "produtos:editar_produto"  produto.id %}">Editar</a>
+                                        <a class="dropdown-item" href="#">Deletar</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock content %}
 
 

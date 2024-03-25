@@ -102,7 +102,7 @@ main {
     height: auto;
 }
 
-#sidebar.open-sidebar .side-item a {
+#sidebar.open-sidebar .side_item_my a {
     justify-content: flex-start;
     gap: 14px;
 }

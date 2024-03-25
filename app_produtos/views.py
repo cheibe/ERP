@@ -18,7 +18,7 @@ def adicionar_produtos(request):
     else:
         form = ProdutosForm()
 
-    return render (request, 'pages/adicionar_produtos.htlm', context={
+    return render (request, 'pages/adicionar_produto.html', context={
         'title': 'Adicionar produtos',
         'form': form
     })
@@ -33,7 +33,7 @@ def editar_produto(request, produtos_id):
     else:
         form = EditProdutosForm(instance=produto)
 
-    return render (request, 'pages/adicionar_produtos.html', context={
+    return render (request, 'pages/adicionar_produto.html', context={
         'title': 'Editar produto',
         'form': form
     })

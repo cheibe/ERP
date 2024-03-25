@@ -18,3 +18,6 @@ class Produtos(models.Model):
     preco_custo = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Preço de custo')
     preco_venda = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Preço de venda')
     embalagem = models.CharField(max_length=35, choices=EMBALAGEM_DE_VENDA, verbose_name='Embalagem')
+
+    def __str__(self):
+        return self.nome

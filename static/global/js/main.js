@@ -7,7 +7,7 @@ abrir_sidebar()
 
 function adiciona_cor() {
    document.getElementById('side_items').addEventListener('click', function(){
-    document.getElementsByClassName('side_item').classList.add('active')
+    document.getElementsByClassName('side_item').classList.toggle('active')
    })
 }
 adiciona_cor()

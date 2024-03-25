@@ -97,12 +97,12 @@ main {
     min-width: 15%;
 }
 
-#sidebar.open-sidebar .item-description {
-    width: 250px;
+#sidebar.open-sidebar .item-description-my {
+    width: 100px;
     height: auto;
 }
 
-#sidebar.open-sidebar .side-item a {
+#sidebar.open-sidebar .side_item_my a {
     justify-content: flex-start;
     gap: 14px;
 }

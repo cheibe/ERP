@@ -16,6 +16,7 @@ body {
 }
 
 main {
+    align-items: center;
     padding: 20px;
     position: fixed;
     z-index: 1;
@@ -200,4 +201,8 @@ main {
 #company_infos span:last-child {
     color: black;
     font-size: 20px;
+}
+
+.content {
+    align-items: center;
 }

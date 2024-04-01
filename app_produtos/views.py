@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from app_produtos.models import Produtos
 from app_produtos.forms import ProdutosForm, EditProdutosForm
+from django.contrib import messages
 
 def produtos_view(request):
     produtos = Produtos.objects.all()
@@ -13,8 +14,9 @@ def adicionar_produtos(request):
     if request.method == 'POST':
         form = ProdutosForm(request.POST)
         if form.is_valid():
-            form.save()
-            redirect ('produtos:produtos')
+            novo_produto = form.save()
+            messages.success(request, f'O produto "{novo_produto.nome}" foi adicionado com sucesso!')
+            return redirect ('produtos:produtos')
     else:
         form = ProdutosForm()
 
@@ -23,13 +25,14 @@ def adicionar_produtos(request):
         'form': form
     })
 
-def editar_produto(request, produtos_id):
-    produto = get_object_or_404(Produtos, pk=produtos_id)
+def editar_produto(request, produto_id):
+    produto = get_object_or_404(Produtos, pk=produto_id)
     if request.method == 'POST':
         form = EditProdutosForm(request.POST, instance=produto)
         if form.is_valid():
-            form.save()
-            redirect('produtos:produtos')
+            porduto_edit = form.save()
+            messages.success(request, f'O produto "{porduto_edit.nome}" foi editado com sucesso!')
+            return redirect('produtos:produtos')
     else:
         form = EditProdutosForm(instance=produto)
 
@@ -42,4 +45,5 @@ def deletar_produto(request, produto_id):
     produto = get_object_or_404(Produtos, pk=produto_id)
     
     produto.delete()
+    messages.success(request, "O produto foi deletado com sucesso!")
     return redirect ('produtos:produtos')

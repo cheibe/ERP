@@ -15,8 +15,7 @@ body {
     display: flex;
 }
 
-main {
-    align-items: center;
+.main {
     padding: 20px;
     position: fixed;
     z-index: 1;

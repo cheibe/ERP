@@ -15,7 +15,7 @@ body {
     display: flex;
 }
 
-main {
+.main {
     padding: 20px;
     position: fixed;
     z-index: 1;

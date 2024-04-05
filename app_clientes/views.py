@@ -4,11 +4,11 @@ from app_clientes.forms import ClienteForm, EditClienteForm
 from django.contrib import messages
 
 def clientes_views(resquest):
-    cliente = Cliente.objects.all()
+    clientes = Cliente.objects.all()
 
     return render (resquest, 'pages/clientes.html', context= {
         'title': 'Clientes',
-        'cliente': cliente,
+        'clientes': clientes,
     })
 
 def adicionar_cliente(request):
@@ -16,7 +16,7 @@ def adicionar_cliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             novo_cliente = form.save()
-            messages.success(f"O cliente '{novo_cliente.nome}' foi cadastrado com sucesso!")
+            messages.success(request, f"O cliente '{novo_cliente.razao_social}' foi cadastrado com sucesso!")
             return redirect ('clientes:clientes')
     else:
         form = ClienteForm()
@@ -33,7 +33,7 @@ def editar_cliente(request, cliente_id):
         form = EditClienteForm(request.POST, instance=cliente)
         if form.is_valid():
             edit_cliente = form.save()
-            messages.success(f"O cliente '{edit_cliente.nome}' foi editado com sucesso!")
+            messages.success(request, f"O cliente '{edit_cliente.razao_social}' foi editado com sucesso!")
             return redirect ('clientes:clientes')
     else:
         form = EditClienteForm(instance=cliente)
@@ -47,6 +47,6 @@ def deletar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
 
     cliente.delete()
-    messages.success('O cliente foi deletado com sucesso!')
+    messages.success(request, 'O cliente foi deletado com sucesso!')
     return redirect('clientes:clientes')
     

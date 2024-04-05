@@ -16,10 +16,13 @@ body {
 }
 
 .main {
+    height: 700px;
     padding: 20px;
     position: fixed;
     z-index: 1;
     padding-left: calc(82px + 20px);
+    display: flex;
+    overflow-y: scroll;
 }
 
 
@@ -204,4 +207,8 @@ body {
 
 .content {
     align-items: center;
+}
+
+.card {
+    width: 1300px;
 }

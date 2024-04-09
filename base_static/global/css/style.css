@@ -22,7 +22,6 @@ body {
     z-index: 1;
     padding-left: calc(82px + 20px);
     display: flex;
-    overflow-y: scroll;
 }
 
 
@@ -205,17 +204,42 @@ body {
     font-size: 20px;
 }
 
+/* general */
+
 .content {
     align-items: center;
 }
 
-.card {
-    min-width: 1750px;
+.card-clientes {
+    width: 1780px;
+    overflow-y: scroll;
+    height: 800px;
 }
 
-@media screen and (min-width: 1750px){
-    .main{
-        overflow-y: scroll;
-        max-height: 950px;
+.card-produtos {
+    width: 1780px;
+    height: 800px;
+}
+
+.card-table {
+    width: 1780px;
+    overflow-y: scroll;
+    height: 800px;
+}
+
+@media screen and (max-width: 1500px) {
+    .card-clientes{
+        width: 1300px;
+        height: 650px;
+    }
+
+    .card-produtos{
+        width: 1300px;
+        height: 650px;
+    }
+
+    .card-table{
+        width: 1300px;
+        height: 650px;
     }
 }

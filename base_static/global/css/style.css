@@ -16,7 +16,7 @@ body {
 }
 
 .main {
-    height: 700px;
+    height: 1080px;
     padding: 20px;
     position: fixed;
     z-index: 1;
@@ -210,5 +210,12 @@ body {
 }
 
 .card {
-    width: 1300px;
+    min-width: 1750px;
+}
+
+@media screen and (min-width: 1750px){
+    .main{
+        overflow-y: scroll;
+        max-height: 950px;
+    }
 }

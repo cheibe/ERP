@@ -212,8 +212,8 @@ body {
 
 .card-clientes {
     width: 1780px;
-    overflow-y: scroll;
     height: 800px;
+    overflow-y: scroll;
 }
 
 .card-produtos {
@@ -221,10 +221,16 @@ body {
     height: 800px;
 }
 
+.card-fornecedor{
+    width: 1780px;
+    height: 800px;
+    overflow-y: scroll;
+}
+
 .card-table {
     width: 1780px;
-    overflow-y: scroll;
     height: 800px;
+    overflow-y: scroll;
 }
 
 @media screen and (max-width: 1500px) {
@@ -236,6 +242,11 @@ body {
     .card-produtos{
         width: 1300px;
         height: 650px;
+    }
+
+    .card-fornecedor{
+        width: 1300px;
+        height: 630px;
     }
 
     .card-table{

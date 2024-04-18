@@ -29,8 +29,8 @@
                                         Opções
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{% url "fornecedores:editar_fornecedor" %}">Editar</a>
-                                        <a class="dropdown-item" href="{% url "fornecedores:deletar_fornecedor" %}">Deletar</a>
+                                        <a class="dropdown-item" href="{% url "fornecedores:editar_fornecedor" fornecedor.id %}">Editar</a>
+                                        <a class="dropdown-item" href="{% url "fornecedores:deletar_fornecedor" fornecedor.id %}">Deletar</a>
                                     </div>
                                 </div>
                             </td>

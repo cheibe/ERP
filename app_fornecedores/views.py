@@ -31,11 +31,12 @@ def editar_fornecedor(request, fornecedor_id):
         form = EditFornecedorForm(request.POST, instance=fornecedor)
         if form.is_valid():
             fornecedor_edit = form.save()
-            messages.success(request, f'O fornecedor {fornecedor_edit.nome} foi editado com sucesso!')
+            messages.success(request, f'O fornecedor "{fornecedor_edit.nome}" foi editado com sucesso!')
             return redirect('fornecedores:fornecedores')
-        else:
-            form = EditFornecedorForm(instance=fornecedor)
-    return render(request, 'pages/adicionar_fornecedor.html', context={
+    else:
+        form = EditFornecedorForm(instance=fornecedor)
+
+    return render (request, 'pages/adicionar_fornecedor.html', context={
         'title': 'Editar fornecedor',
         'form': form
     })

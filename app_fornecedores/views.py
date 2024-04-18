@@ -15,12 +15,12 @@ def adicionar_fornecedor(request):
         form = FornecedorForm(request.POST)
         if form.is_valid():
             novo_fornecedor = form.save()
-            messages.success(request, f'O fornecedor {novo_fornecedor.nome} foi cadastrado com sucesso!')
-            return redirect('fornecedores:fornecedores')
-        else:
-            form = FornecedorForm()
+            messages.success(request, f'O fornecedor "{novo_fornecedor.nome}" foi adicionado com sucesso!')
+            return redirect ('fornecedores:fornecedores')
+    else:
+        form = FornecedorForm()
 
-    return render(request, 'pages/adicionar_fornecedor.html', context= {
+    return render (request, 'pages/adicionar_fornecedor.html', context={
         'title': 'Adicionar fornecedor',
         'form': form
     })

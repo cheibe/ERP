@@ -1,14 +1,14 @@
 from django import forms
 from app_fornecedores.models import Fornecedor
 
-class FornecedorForm(forms.Form):
+class FornecedorForm(forms.ModelForm):
 
     class Meta:
         model = Fornecedor
         fields = [
             'nome',
             'telefone',
-            'documentos',
+            'documento',
             'rua',
             'numero',
             'bairro',
@@ -16,14 +16,14 @@ class FornecedorForm(forms.Form):
             'estado'
         ]
 
-class EditFornecedorForm(forms.Form):
+class EditFornecedorForm(forms.ModelForm):
 
     class Meta:
         model = Fornecedor
         fields = [
             'nome',
             'telefone',
-            'documentos',
+            'documento',
             'rua',
             'numero',
             'bairro',

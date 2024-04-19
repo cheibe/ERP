@@ -16,4 +16,4 @@ class Pagamento(models.Model):
     status = models.CharField(max_length=30, choices=PAGAMENTO_STATUS, default='pendente')
 
     def __str__(self):
-        return self.fornecedor
+        return self.fornecedor.nome

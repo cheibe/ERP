@@ -1,0 +1,15 @@
+{% extends "global/index.html" %}
+{% load render_table from django_tables2 %}
+
+
+{% block content %}
+<div class="card-table">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                {% render_table table %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

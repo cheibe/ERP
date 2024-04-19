@@ -3,7 +3,7 @@
         Opções
     </button>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Editar</a>
-        <a class="dropdown-item" href="#">Deletar</a>
+        <a class="dropdown-item" href="{% url "pagamentos:editar_pagamento" record.id %}">Editar</a>
+        <a class="dropdown-item" href="{% url "pagamentos:delete_pagamento" record.id %}">Deletar</a>
     </div>
 </div>

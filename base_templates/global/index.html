@@ -24,17 +24,6 @@
                     </span>
                 </p>
             </div>
-            <div id="user">
-                <img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar">
-                <p id="user_infos">
-                    <span class="item-description-my">
-                        Nome
-                    </span>
-                    <span class="item-description-my">
-                        lorem ipsum
-                    </span>
-                </p>
-            </div>
             <ul id="side_items">
                 <li class="side_item_my">
                     <a href="{% url "dashboard:home" %}">
@@ -100,6 +89,14 @@
                         </span>
                     </a>
                 </li>
+                <li class="side_item_my">
+                    <a href="#">
+                        <i class="fa-solid fa-building"></i>
+                        <span class="item-description-my">
+                            Empresas
+                        </span>
+                    </a>
+                </li>
             </ul>
             <button id="open_btn">
                 <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
@@ -114,6 +111,21 @@
             </button>
         </div>
     </nav>
+    <div class="nav-background">
+        <span>.</span>
+    </div>
+    <div class="main-nav">
+        <div class="content-nav">
+            <nav class="nav-my">
+                  <span class="navbar-text-my">
+                    <img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar">
+                    <span class="item-description-my">
+                        Nome
+                    </span>
+                  </span>
+              </nav>
+        </div>
+    </div>
     <div class="main">
         <div class="content">
             <div class="content-fluid">

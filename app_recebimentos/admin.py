@@ -1,3 +1,4 @@
 from django.contrib import admin
+from app_recebimentos.models import Recebimento
 
-# Register your models here.
+admin.site.register(Recebimento)

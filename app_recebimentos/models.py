@@ -16,4 +16,4 @@ class Recebimento(models.Model):
     status = models.CharField(max_length=30, choices=PAGAMENTO_STATUS, default='pendente')
 
     def __str__(self):
-        return self.cliente.nome
+        return self.cliente.razao_social

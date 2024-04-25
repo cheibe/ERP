@@ -11,9 +11,9 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=50, verbose_name='Cidade')
     estado = models.CharField(max_length=2, verbose_name='Estado')
     cep = models.CharField(max_length=8, verbose_name='CEP')
-    complemento = models.CharField(max_length=100, null=True, blank=True, verbose_name='Complemento')
+    complemento = models.CharField(max_length=100, blank=True, verbose_name='Complemento')
     telefone = models.CharField(max_length=11, verbose_name='Telefone')
-    telefone_fixo = models.CharField(max_length=11, null=True, blank=True, verbose_name='Telefone fixo')
+    telefone_fixo = models.CharField(max_length=11, blank=True, verbose_name='Telefone fixo')
 
     def __str__(self):
         return self.nome_fantasia

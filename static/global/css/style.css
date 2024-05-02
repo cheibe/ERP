@@ -10,20 +10,56 @@
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
     background-color: #e3e9f7;
     display: flex;
+
 }
 
 .main {
-    height: 1080px;
+    height: 100vh;
+    max-height: 80vh;
     padding: 20px;
     position: fixed;
     z-index: 1;
     padding-left: calc(82px + 20px);
     display: flex;
+    top: 60px;
 }
 
+.nav-background{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    padding-left: 0px;
+    align-items: center;
+}
+
+.main-nav{
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    padding-left: 1780px;
+    align-items: center;
+}
+
+.nav-my{
+    width: 100px;
+}
+
+.navbar-text-my{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
 
 /* sidebar */
 #sidebar {
@@ -90,7 +126,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 12px;
     transition: width .6s;
     height: 0px;
 }
@@ -184,7 +220,7 @@ body {
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
-    background-color: #f6f6f6;
+    border-bottom: 1px solid black;
 }
 
 #company_image {
@@ -219,6 +255,12 @@ body {
 .card-produtos {
     width: 1780px;
     height: 800px;
+    overflow-y: scroll;
+}
+
+.card-pagamentos{
+    width: 1780px;
+    height: 800px;
 }
 
 .card-fornecedor{
@@ -236,21 +278,30 @@ body {
 @media screen and (max-width: 1500px) {
     .card-clientes{
         width: 1300px;
-        height: 650px;
+        height: 580px;
     }
 
     .card-produtos{
         width: 1300px;
-        height: 650px;
+        height: 560px;
+    }
+
+    .card-pagamentos{
+        width: 1300px;
+        height: 560px;
     }
 
     .card-fornecedor{
         width: 1300px;
-        height: 630px;
+        height: 580px;
     }
 
     .card-table{
         width: 1300px;
-        height: 650px;
+        height: 585px;
+    }
+
+    .main-nav{
+        padding-left: 1300px;
     }
 }

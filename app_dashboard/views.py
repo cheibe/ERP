@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
 def home_view(request):
-    return render(request, 'global/login.html', context= {
+    return render(request, 'pages/home.html', context= {
         'title': 'Dashboard',
     })

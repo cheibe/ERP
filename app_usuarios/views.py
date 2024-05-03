@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from app_usuarios.models import CustomUser
-from app_usuarios.forms import CustomUserCreationForm, EditCustomUserCreationForm, EditPasswordCustomUserForm
+from app_usuarios.forms import CustomUserCreationForm, EditCustomUserCreationForm
 from app_usuarios.tables import UsuarioTable
 from django.contrib import messages
 from django.contrib.auth.forms import SetPasswordForm
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def usuarios_view(request):
     usuarios = CustomUser.objects.all()

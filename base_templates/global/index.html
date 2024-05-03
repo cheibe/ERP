@@ -120,7 +120,7 @@
                 <span class="navbar-text-my">
                 <img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar">
                 <span class="item-description-my">
-                    Nome
+                    {{ request.user.nome }}
                 </span>
                 </span>
             </nav>

@@ -103,12 +103,14 @@
             </button>
         </div>
         <div id="logout">
-            <button id="logout_btn">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="item-description-my">
-                    logout
-                </span>
-            </button>
+            <a href="{% url "login:logout" %}">
+                <button id="logout_btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description-my">
+                        logout
+                    </span>
+                </button>
+            </a>
         </div>
     </nav>
     <div class="nav-background">

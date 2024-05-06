@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def recebimentos_views(request):
-    recebimentos = Recebimento.objects.all()
+    if request.user.is_staff:
+        recebimentos = Recebimento.objects.all()
+    else:
+        recebimentos = Recebimento.objects.filter(empresa=request.user.empresa)
     table = RecebimentoTable(recebimentos)
     return render(request, 'pages/recebimentos.html', context={
         'title': 'Recebimentos',
@@ -17,13 +20,15 @@ def recebimentos_views(request):
 @login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_recebimento(request):
     if request.method == 'POST':
-        form = RecebimentoForm(request.POST)
+        form = RecebimentoForm(request, request.POST)
         if form.is_valid():
-            novo_recebimento = form.save()
+            novo_recebimento = form.save(commit=False)
+            novo_recebimento.empresa = form.cleaned_data.get('empresa', request.user.empresa)
+            form.save()
             messages.success(request, f'O recebimento do cliente "{novo_recebimento.cliente.razao_social}" foi adicionado com sucesso! ')
             return redirect('recebimentos:recebimentos')
     else:
-        form = RecebimentoForm()
+        form = RecebimentoForm(request)
         
     return render(request, 'pages/adicionar_recebimento.html', context={
         'title': 'Adicionar recebimentos',

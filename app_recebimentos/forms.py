@@ -6,6 +6,7 @@ class RecebimentoForm(forms.ModelForm):
     class Meta:
         model = Recebimento
         fields = [
+            'empresa',
             'cliente',
             'descricao',
             'valor',
@@ -15,6 +16,11 @@ class RecebimentoForm(forms.ModelForm):
         widgets = {
             'data_vencimento': forms.widgets.DateInput(attrs={'type': 'date'})
         }
+
+    def __init__(self, request, *args, **kwargs):
+        super(RecebimentoForm, self).__init__(*args, **kwargs)
+        if not request.user.is_staff:
+            del self.fields['empresa']
 
 class EditRecebimentoForm(forms.ModelForm):
 

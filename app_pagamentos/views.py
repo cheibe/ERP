@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def pagamentos_views(request):
-    pagamentos = Pagamento.objects.all()
+    if request.user.is_staff:
+        pagamentos = Pagamento.objects.all()
+    else:
+        pagamentos = Pagamento.objects.filter(empresa=request.user.empresa)
     table = PagamentoTable(pagamentos)
     return render(request, 'pages/pagamentos.html', context={
         'title': 'Pagamentos',
@@ -17,13 +20,15 @@ def pagamentos_views(request):
 @login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_pagamento(request):
     if request.method == 'POST':
-        form = PagamentoForm(request.POST)
+        form = PagamentoForm(request, request.POST)
         if form.is_valid():
-            novo_pagamento = form.save()
+            novo_pagamento = form.save(commit=False)
+            novo_pagamento.empresa = form.cleaned_data.get('empresa', request.user.empresa)
+            form.save()
             messages.success(request, f'O pagamento do fornecedor "{novo_pagamento.fornecedor.nome}" foi adicionado com sucesso!')
             return redirect('pagamentos:pagamentos')
     else:
-        form = PagamentoForm()
+        form = PagamentoForm(request)
 
     return render(request, 'pages/adicionar_pagamento.html', context={
         'title': 'Adicionar pagamento',

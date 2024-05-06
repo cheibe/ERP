@@ -6,6 +6,7 @@ class PagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
         fields = [
+            'empresa',
             'fornecedor',
             'descricao',
             'valor',
@@ -15,6 +16,11 @@ class PagamentoForm(forms.ModelForm):
         widgets = {
             'data_vencimento': forms.widgets.DateInput(attrs={'type': 'date'})
         }
+    
+    def __init__(self, request, *args, **kwargs):
+        super(PagamentoForm, self).__init__(*args, **kwargs)
+        if not request.user.is_staff:
+            del self.fields['empresa']
 
 class EditPagamentoForm(forms.ModelForm):
 

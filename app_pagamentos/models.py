@@ -1,5 +1,6 @@
 from django.db import models
 from app_fornecedores.models import Fornecedor
+from app_empresas.models import Empresa
 
 PAGAMENTO_STATUS = [
     ('pendente', 'Pendente'),
@@ -8,6 +9,7 @@ PAGAMENTO_STATUS = [
 ]
 
 class Pagamento(models.Model):
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
     fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE)
     descricao = models.CharField(max_length=255, verbose_name='Descrição')
     valor = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor')

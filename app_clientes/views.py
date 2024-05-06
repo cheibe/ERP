@@ -22,8 +22,8 @@ def adicionar_cliente(request):
         if form.is_valid():
             novo_cliente = form.save(commit=False)
             novo_cliente.empresa = form.cleaned_data.get('empresa', request.user.empresa)
-            messages.success(request, f"O cliente '{novo_cliente.razao_social}' foi cadastrado com sucesso!")
             form.save()
+            messages.success(request, f"O cliente '{novo_cliente.razao_social}' foi cadastrado com sucesso!")
             return redirect ('clientes:clientes')
     else:
         form = ClienteForm(request)

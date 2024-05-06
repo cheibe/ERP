@@ -5,6 +5,7 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = [
+            'empresa',
             'razao_social',
             'nome_fantasia',
             'rg',
@@ -19,6 +20,11 @@ class ClienteForm(forms.ModelForm):
             'telefone',
             'telefone_fixo',
         ]
+
+    def __init__(self, request, *args, **kwargs):
+        super(ClienteForm, self).__init__(*args, **kwargs)
+        if not request.user.is_staff:
+            del self.fields['empresa']
 
 class EditClienteForm(forms.ModelForm):
 

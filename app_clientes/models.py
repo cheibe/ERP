@@ -1,6 +1,8 @@
 from django.db import models
+from app_empresas.models import Empresa
 
 class Cliente(models.Model):
+    empresa = models.ForeignKey(Empresa, verbose_name=('Empresa'), on_delete=models.CASCADE)
     razao_social = models.CharField(max_length=150, verbose_name='Razão social')
     nome_fantasia = models.CharField(max_length=150, null=True,verbose_name='Nome fantasia')
     rg = models.CharField(max_length=9, null=True, blank=True, verbose_name='RG')

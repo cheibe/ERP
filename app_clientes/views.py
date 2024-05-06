@@ -6,8 +6,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def clientes_views(resquest):
-    clientes = Cliente.objects.all()
-
+    if resquest.user.is_staff:
+        clientes = Cliente.objects.all()
+    else:
+        clientes = Cliente.objects.filter(empresa=resquest.user.empresa)
     return render (resquest, 'pages/clientes.html', context= {
         'title': 'Clientes',
         'clientes': clientes,
@@ -16,13 +18,15 @@ def clientes_views(resquest):
 @login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_cliente(request):
     if request.method == 'POST':
-        form = ClienteForm(request.POST)
+        form = ClienteForm(request, request.POST)
         if form.is_valid():
-            novo_cliente = form.save()
+            novo_cliente = form.save(commit=False)
+            novo_cliente.empresa = form.cleaned_data.get('empresa', request.user.empresa)
             messages.success(request, f"O cliente '{novo_cliente.razao_social}' foi cadastrado com sucesso!")
+            form.save()
             return redirect ('clientes:clientes')
     else:
-        form = ClienteForm()
+        form = ClienteForm(request)
 
     return render (request, 'pages/adicionar_cliente.html', context= {
         'title': 'Adicionar cliente',

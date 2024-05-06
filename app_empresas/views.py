@@ -3,7 +3,9 @@ from app_empresas.forms import EmpresaForm, EditEmpresaForm
 from django.shortcuts import render, redirect, get_object_or_404
 from app_empresas.tables import EmpresaTable
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def empresas_view(request):
     empresas = Empresa.objects.all()
     table = EmpresaTable(empresas)
@@ -12,6 +14,7 @@ def empresas_view(request):
         'table': table
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_empresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
@@ -26,6 +29,7 @@ def adicionar_empresa(request):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_empresa(request, empresa_id):
     empresa = get_object_or_404(Empresa, pk=empresa_id)
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def editar_empresa(request, empresa_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def deletar_empresa(request, empresa_id):
     empresa = get_object_or_404(Empresa, pk=empresa_id)
 

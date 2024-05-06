@@ -8,11 +8,8 @@ def login(request):
         password = request.POST.get('password')
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            print(user)
-            messages.success(request, f'Login feito com sucesso!')
-            print('logado')
             auth_login(request, user)
-            return redirect('usuarios:usuarios')
+            return redirect('dashboard:home')
         messages.error(request, 'Credencias invalidas')
         return redirect('login:login')
     return render(request, 'pages/login.html')

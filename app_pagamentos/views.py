@@ -3,7 +3,9 @@ from app_pagamentos.models import Pagamento
 from app_pagamentos.forms import PagamentoForm, EditPagamentoForm
 from django.contrib import messages
 from app_pagamentos.tables import PagamentoTable
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def pagamentos_views(request):
     pagamentos = Pagamento.objects.all()
     table = PagamentoTable(pagamentos)
@@ -12,6 +14,7 @@ def pagamentos_views(request):
         'table': table
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_pagamento(request):
     if request.method == 'POST':
         form = PagamentoForm(request.POST)
@@ -27,6 +30,7 @@ def adicionar_pagamento(request):
         'form': form, 
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_pagamento(request, pagamento_id):
     pagamento = get_object_or_404(Pagamento, pk=pagamento_id)
     if request.method == 'POST':
@@ -44,6 +48,7 @@ def editar_pagamento(request, pagamento_id):
         'pagamento': pagamento
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def delete_pagamento(request, pagamento_id):
     pagamento = get_object_or_404(Pagamento, pk=pagamento_id)
 

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def usuarios_view(request):
     usuarios = CustomUser.objects.all()
     table = UsuarioTable(usuarios)
@@ -14,6 +15,7 @@ def usuarios_view(request):
         'table': table
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_usuario(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -28,6 +30,7 @@ def adicionar_usuario(request):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_usuario(request, usuario_id):
     usuario = get_object_or_404(CustomUser, pk=usuario_id)
     if request.method == 'POST':
@@ -43,6 +46,7 @@ def editar_usuario(request, usuario_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_senha_usuario(request, usuario_id):
     usuario = CustomUser.objects.get(pk=usuario_id)
     if request.method == 'POST':
@@ -58,6 +62,7 @@ def editar_senha_usuario(request, usuario_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def deletar_usuario(request, usuario_id):
     usuario = get_object_or_404(CustomUser, pk=usuario_id)
 

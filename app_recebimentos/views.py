@@ -3,7 +3,9 @@ from app_recebimentos.models import Recebimento
 from app_recebimentos.forms import RecebimentoForm, EditRecebimentoForm 
 from django.contrib import messages
 from app_recebimentos.tables import RecebimentoTable
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def recebimentos_views(request):
     recebimentos = Recebimento.objects.all()
     table = RecebimentoTable(recebimentos)
@@ -12,6 +14,7 @@ def recebimentos_views(request):
         'table': table
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_recebimento(request):
     if request.method == 'POST':
         form = RecebimentoForm(request.POST)
@@ -27,6 +30,7 @@ def adicionar_recebimento(request):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_recebimento(request, recebimento_id):
     recebimento = get_object_or_404(Recebimento, pk=recebimento_id)
     if request.method == 'POST':
@@ -43,6 +47,7 @@ def editar_recebimento(request, recebimento_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def delete_recebimento(request, recebimento_id):
     recebimento = get_object_or_404(Recebimento, pk=recebimento_id)
 

@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from app_clientes.models import Cliente
 from app_clientes.forms import ClienteForm, EditClienteForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def clientes_views(resquest):
     clientes = Cliente.objects.all()
 
@@ -11,6 +13,7 @@ def clientes_views(resquest):
         'clientes': clientes,
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -26,6 +29,7 @@ def adicionar_cliente(request):
         'form': form,
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
 
@@ -43,6 +47,7 @@ def editar_cliente(request, cliente_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def deletar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
 

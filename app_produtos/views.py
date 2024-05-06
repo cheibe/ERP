@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from app_produtos.models import Produtos
 from app_produtos.forms import ProdutosForm, EditProdutosForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def produtos_view(request):
     produtos = Produtos.objects.all()
     return render(request, 'pages/produtos.html', context={
@@ -10,6 +12,7 @@ def produtos_view(request):
         'produtos': produtos,
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_produtos(request):
     if request.method == 'POST':
         form = ProdutosForm(request.POST)
@@ -25,6 +28,7 @@ def adicionar_produtos(request):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_produto(request, produto_id):
     produto = get_object_or_404(Produtos, pk=produto_id)
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def editar_produto(request, produto_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def deletar_produto(request, produto_id):
     produto = get_object_or_404(Produtos, pk=produto_id)
     

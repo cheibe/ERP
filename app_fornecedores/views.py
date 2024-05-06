@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from app_fornecedores.models import Fornecedor
 from app_fornecedores.forms import FornecedorForm, EditFornecedorForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def fornecedores_view(request):
     fornecedores = Fornecedor.objects.all()
     return render(request, 'pages/fornecedores.html', context={
@@ -10,6 +12,7 @@ def fornecedores_view(request):
         'fornecedores': fornecedores
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_fornecedor(request):
     if request.method == 'POST':
         form = FornecedorForm(request.POST)
@@ -25,6 +28,7 @@ def adicionar_fornecedor(request):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def editar_fornecedor(request, fornecedor_id):
     fornecedor = get_object_or_404(Fornecedor, pk=fornecedor_id)
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def editar_fornecedor(request, fornecedor_id):
         'form': form
     })
 
+@login_required(login_url='login:login', redirect_field_name='next')
 def delete_fornecedor(request, fornecedor_id):
     fornecedor = get_object_or_404(Fornecedor, pk=fornecedor_id)
     

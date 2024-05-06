@@ -1,6 +1,8 @@
 from django.db import models
+from app_empresas.models import Empresa
 
 class Fornecedor(models.Model):
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
     nome = models.CharField(max_length=120, verbose_name='Nome')
     telefone = models.CharField(max_length=20, verbose_name='Telefone')
     documento = models.CharField(max_length=20, verbose_name='CPF/CNPJ')

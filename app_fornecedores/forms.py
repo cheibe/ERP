@@ -6,6 +6,7 @@ class FornecedorForm(forms.ModelForm):
     class Meta:
         model = Fornecedor
         fields = [
+            'empresa',
             'nome',
             'telefone',
             'documento',
@@ -15,6 +16,11 @@ class FornecedorForm(forms.ModelForm):
             'cidade',
             'estado'
         ]
+    
+    def __init__(self, request, *args, **kwargs):
+        super(FornecedorForm, self).__init__(*args, **kwargs)
+        if not request.user.is_staff:
+            del self.fields['empresa']
 
 class EditFornecedorForm(forms.ModelForm):
 

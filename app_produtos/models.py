@@ -13,7 +13,7 @@ EMBALAGEM_DE_VENDA = [
 ]
 
 class Produtos(models.Model):
-    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa', null=True)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
     codigo = models.CharField(max_length=5, verbose_name='Código')
     nome = models.CharField(max_length=150, verbose_name='Nome')
     estoque = models.IntegerField(verbose_name='Estoque')

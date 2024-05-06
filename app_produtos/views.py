@@ -6,7 +6,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def produtos_view(request):
-    produtos = Produtos.objects.all()
+    if request.user.is_staff:
+        produtos = Produtos.objects.all()
+    else:
+        produtos = Produtos.objects.filter(empresa=request.user.empresa)
     return render(request, 'pages/produtos.html', context={
         'title': 'Pordutos',
         'produtos': produtos,
@@ -15,13 +18,15 @@ def produtos_view(request):
 @login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_produtos(request):
     if request.method == 'POST':
-        form = ProdutosForm(request.POST)
+        form = ProdutosForm(request, request.POST)
         if form.is_valid():
-            novo_produto = form.save()
+            novo_produto = form.save(commit=False)
+            novo_produto.empresa = form.cleaned_data.get('empresa', request.user.empresa)
+            form.save()
             messages.success(request, f'O produto "{novo_produto.nome}" foi adicionado com sucesso!')
             return redirect ('produtos:produtos')
     else:
-        form = ProdutosForm()
+        form = ProdutosForm(request)
 
     return render (request, 'pages/adicionar_produto.html', context={
         'title': 'Adicionar produtos',

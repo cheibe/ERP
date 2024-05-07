@@ -13,6 +13,10 @@ class CustomUserCreationForm(UserCreationForm):
             'is_comum',
         ]
 
+    def __init__(self, request, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        if not request.user.is_staff:
+            del self.fields['empresa']
 class EditCustomUserCreationForm(UserChangeForm):
     class Meta:
         model = CustomUser

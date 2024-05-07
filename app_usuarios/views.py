@@ -8,7 +8,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def usuarios_view(request):
-    usuarios = CustomUser.objects.all()
+    if request.user.is_staff:
+        usuarios = CustomUser.objects.all()
+    else:
+        usuarios = CustomUser.objects.filter(empresa=request.user.empresa)
     table = UsuarioTable(usuarios)
     return render(request, 'pages/usuarios.html', context={
         'title': 'Usuários',
@@ -18,13 +21,15 @@ def usuarios_view(request):
 @login_required(login_url='login:login', redirect_field_name='next')
 def adicionar_usuario(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request, request.POST)
         if form.is_valid():
-            novo_usuario = form.save()
+            novo_usuario = form.save(commit=False)
+            novo_usuario.empresa = form.cleaned_data.get('empresa', request.user.empresa)
+            form.save()
             messages.success(request, f'O novo usuário "{novo_usuario.nome}" foi adicionado com sucesso! ')
             return redirect('usuarios:usuarios')
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm(request)
     return render(request, 'pages/adicionar_usuario.html', context={
         'title': 'Adicionar usuário',
         'form': form

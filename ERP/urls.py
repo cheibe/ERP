@@ -11,5 +11,6 @@ urlpatterns = [
     path('recebimentos/', include('app_recebimentos.urls')),
     path('empresas/', include('app_empresas.urls')),
     path('usuarios/', include('app_usuarios.urls')),
-    path('login', include('app_login.urls'))
+    path('login/', include('app_login.urls')),
+    path('pedidos/', include('app_pedidos.urls'))
 ]

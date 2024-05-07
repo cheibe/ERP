@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'app_recebimentos',
     'app_empresas',
     'app_usuarios',
+    'app_pedidos',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

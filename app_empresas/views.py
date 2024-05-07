@@ -7,8 +7,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login:login', redirect_field_name='next')
 def empresas_view(request):
-    empresas = Empresa.objects.all()
-    table = EmpresaTable(empresas)
+    if request.user.is_staff:
+        empresa = Empresa.objects.all()
+    else:
+        empresa = Empresa.objects.filter(nome_fantasia=request.user.empresa)
+    table = EmpresaTable(empresa)
     return render(request, 'pages/empresas.html', context={
         'title': 'Empresas',
         'table': table

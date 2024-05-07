@@ -3,10 +3,12 @@
 
 
 {% block content %}
-<a href="{% url "empresas:adicionar_empresa" %}" class="btn btn-primary mb-3">
-    <span class="fas fa-plus mr-1"></span>
-    Cadastrar
-</a>
+{% if request.user.is_staff %}
+    <a href="{% url "empresas:adicionar_empresa" %}" class="btn btn-primary mb-3">
+        <span class="fas fa-plus mr-1"></span>
+        Cadastrar
+    </a>
+{% endif %}
 <div class="card-table">
     <div class="card">
         <div class="card-body">

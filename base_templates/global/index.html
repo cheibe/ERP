@@ -81,22 +81,24 @@
                         </span>
                     </a>
                 </li>
-                <li class="side_item_my">
-                    <a href="{% url "usuarios:usuarios" %}">
-                        <i class="fa-solid fa-users"></i>
-                        <span class="item-description-my">
-                            Usuários
-                        </span>
-                    </a>
-                </li>
-                <li class="side_item_my">
-                    <a href="{% url "empresas:empresas" %}">
-                        <i class="fa-solid fa-building"></i>
-                        <span class="item-description-my">
-                            Empresas
-                        </span>
-                    </a>
-                </li>
+                {% if request.user.is_staff or request.user.is_admin %}
+                    <li class="side_item_my">
+                        <a href="{% url "usuarios:usuarios" %}">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="item-description-my">
+                                Usuários
+                            </span>
+                        </a>
+                    </li>
+                    <li class="side_item_my">
+                        <a href="{% url "empresas:empresas" %}">
+                            <i class="fa-solid fa-building"></i>
+                            <span class="item-description-my">
+                                Empresas
+                            </span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
             <button id="open_btn">
                 <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>

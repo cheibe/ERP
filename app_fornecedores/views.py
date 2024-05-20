@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from app_fornecedores.models import Fornecedor
 from app_fornecedores.forms import FornecedorForm, EditFornecedorForm
+from app_fornecedores.tables import FornecedorTable
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -10,9 +11,10 @@ def fornecedores_view(request):
         fornecedores = Fornecedor.objects.all()
     else:
         fornecedores = Fornecedor.objects.filter(empresa=request.user.empresa)
+    table = FornecedorTable(fornecedores)
     return render(request, 'pages/fornecedores.html', context={
         'title': 'Fornecedores',
-        'fornecedores': fornecedores
+        'table': table,
     })
 
 @login_required(login_url='login:login', redirect_field_name='next')

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from app_produtos.models import Produtos
 from app_produtos.forms import ProdutosForm, EditProdutosForm
+from app_produtos.tables import ProdutosTable
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -10,9 +11,10 @@ def produtos_view(request):
         produtos = Produtos.objects.all()
     else:
         produtos = Produtos.objects.filter(empresa=request.user.empresa)
+    table = ProdutosTable(produtos)
     return render(request, 'pages/produtos.html', context={
         'title': 'Pordutos',
-        'produtos': produtos,
+        'table': table,
     })
 
 @login_required(login_url='login:login', redirect_field_name='next')

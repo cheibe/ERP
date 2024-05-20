@@ -6,44 +6,42 @@
         <span class="fas fa-plus mr-1"></span>
         Cadastrar
     </a>
-    <div class="card-table">
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-bordered table-hover">
-                    <thead>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Preço de custo</th>
+                        <th>Preço de venda</th>
+                        <th>Estoque</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in produtos %}
                         <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Preço de custo</th>
-                            <th>Preço de venda</th>
-                            <th>Estoque</th>
-                            <th>Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for produto in produtos %}
-                            <tr>
-                                <td>{{ produto.codigo }}</td>
-                                <td>{{ produto.nome }}</td>
-                                <td>{{ produto.preco_custo }}</td>
-                                <td>{{ produto.preco_venda }}</td>
-                                <td>{{ produto.estoque }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Opções
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{% url "produtos:editar_produto" produto.id %}">Editar</a>
-                                            <a class="dropdown-item" href="{% url "produtos:deletar_produto" produto.id %}">Deletar</a>
-                                        </div>
+                            <td>{{ produto.codigo }}</td>
+                            <td>{{ produto.nome }}</td>
+                            <td>{{ produto.preco_custo }}</td>
+                            <td>{{ produto.preco_venda }}</td>
+                            <td>{{ produto.estoque }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Opções
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url "produtos:editar_produto" produto.id %}">Editar</a>
+                                        <a class="dropdown-item" href="{% url "produtos:deletar_produto" produto.id %}">Deletar</a>
                                     </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock content %}

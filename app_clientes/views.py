@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from app_clientes.models import Cliente
 from app_clientes.forms import ClienteForm, EditClienteForm
+from app_clientes.tables import ClienteTable
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -10,9 +11,10 @@ def clientes_views(resquest):
         clientes = Cliente.objects.all()
     else:
         clientes = Cliente.objects.filter(empresa=resquest.user.empresa)
+    table = ClienteTable(clientes)
     return render (resquest, 'pages/clientes.html', context= {
         'title': 'Clientes',
-        'clientes': clientes,
+        'table': table,
     })
 
 @login_required(login_url='login:login', redirect_field_name='next')
@@ -46,7 +48,7 @@ def editar_cliente(request, cliente_id):
     else:
         form = EditClienteForm(instance=cliente)
     
-    return render (request, 'pages/adcionar_cliente.html', context={
+    return render (request, 'pages/adicionar_cliente.html', context={
         'title': 'Editar cliente',
         'form': form
     })

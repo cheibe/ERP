@@ -1,4 +1,5 @@
 {% extends "global/index.html" %}
+{% load render_table from django_tables2 %}
 
 {% block content %}
     <a href="{% url "clientes:adicionar_cliente" %}" class="btn btn-primary mb-3">
@@ -9,36 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Razão social</th>
-                            <th>Nome fantasia</th>
-                            <th>Telefone</th>
-                            <th>Telefone fixo</th>
-                            <th>Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for cliente in clientes %}
-                            <tr>
-                                <td>{{ cliente.razao_social }}</td>
-                                <td>{{ cliente.nome_fantasia }}</td>
-                                <td>{{ cliente.telefone }}</td>
-                                <td>{{ cliente.telefone_fixo }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Opções
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{% url "clientes:editar_cliente" cliente.id %}">Editar</a>
-                                            <a class="dropdown-item" href="{% url "clientes:deletar_cliente" cliente.id %}">Deletar</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
+                    {% render_table table %}
                 </table>
             </div>
         </div>

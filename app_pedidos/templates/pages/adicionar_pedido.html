@@ -1,0 +1,88 @@
+{% extends "global/index.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h4>
+    Cabeçalho
+</h4>
+<div class="cabecalho">
+    <div class="item-cabecalho">
+        <label for="">Data de emissão</label>
+        <input class="input-data"type="date" name="data_emissao" id="">
+    </div>
+    <div class="item-cabecalho">
+        <label for="">Cliente</label>
+        <input type="text" name="cliente" id="">
+    </div>
+    <div class="item-cabecalho">
+        <label for="">Forma de pagamento</label>
+        <input type="text" name="forma_pagamento" id="">
+    </div>
+</div>
+<br>
+<h4>
+    Produtos
+</h4>
+<div class="produtos">
+    <div class="table-todos">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Adicionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.codigo }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.preco_venda }}</td>
+                        <td>
+                            <a href="">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-adcionado">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Adicionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.codigo }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.preco_venda }}</td>
+                        <td>
+                            <a href="">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="total">
+        <p>Total:</p>
+        <label for="">a</label>
+        <button type="submit" class="btn btn-primary my-btn">
+            <span class="fas fa-save"></span>
+            Salvar
+        </button>
+    </div>
+</div>
+{% endblock content %}

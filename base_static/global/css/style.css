@@ -259,59 +259,7 @@ a {
     height: 100%;
 }
 
-.card-clientes {
-    width: 1780px;
-    height: 800px;
-    overflow-y: scroll;
-}
-
-.card-produtos {
-    width: 1780px;
-    height: 800px;
-}
-
-.card-pagamentos{
-    width: 1780px;
-    height: 800px;
-}
-
-.card-fornecedor{
-    width: 1780px;
-    height: 800px;
-    overflow-y: scroll;
-}
-
-.card-table {
-    width: 1780px;
-    height: 800px;
-}
-
 @media screen and (max-width: 1500px) {
-    .card-clientes{
-        width: 1300px;
-        height: 580px;
-    }
-
-    .card-produtos{
-        width: 1300px;
-        height: 560px;
-    }
-
-    .card-pagamentos{
-        width: 1300px;
-        height: 560px;
-    }
-
-    .card-fornecedor{
-        width: 1300px;
-        height: 580px;
-    }
-
-    .card-table{
-        width: 1300px;
-        height: 585px;
-    }
-
     .main-nav{
         padding-left: 1240px;
     }

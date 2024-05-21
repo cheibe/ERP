@@ -15,7 +15,13 @@
 </head>
 
 <body>
-
+    <div class="main-nav">
+        <p class="ponto">.</p>
+        <ul class="infos">
+            <li><img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar"></li>
+            <li><a class="text-infos">{{ request.user.nome }}</a></li>
+        </ul>    
+    </div>
     <nav id="sidebar">
         <div id="sidebar_content">
             <div id="company">
@@ -123,21 +129,6 @@
                 {% bootstrap_messages %}
                 {% block content %}{% endblock content %}
             </div>
-        </div>
-    </div>
-    <div class="nav-background">
-        <span>.</span>
-    </div>
-    <div class="main-nav">
-        <div class="content-nav">
-            <nav class="nav-my">
-                <span class="navbar-text-my">
-                <img src="{% static "global/img/avatar.jpg" %}" id="user_avatar" alt="Avatar">
-                <span class="item-description-my">
-                    {{ request.user.nome }}
-                </span>
-                </span>
-            </nav>
         </div>
     </div>
     <script src="{% static "global/js/main.js" %}"></script>

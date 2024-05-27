@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from django.contrib.auth.models import User
+from app_usuarios.models import CustomUser
 
 class UsuarioTable(tables.Table):
     nome = tables.Column(verbose_name='Nome', orderable=False)
@@ -9,6 +9,6 @@ class UsuarioTable(tables.Table):
     opcao = tables.TemplateColumn(template_name='pages/botao_acoes_usuarios.html', verbose_name='Opções', orderable=False)
 
     class Meta:
-        model = User
+        model = CustomUser
         attrs = {'class': 'table table-bordered table-hover'}
         fields = ('nome', 'email', 'is_admin', 'is_comum')

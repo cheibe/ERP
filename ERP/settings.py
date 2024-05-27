@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap5',
     'django_tables2',
-    'rest_fremework'
+    'rest_framework',
+    'api',
     'app_login',
     'app_dashboard',
     'app_produtos',
